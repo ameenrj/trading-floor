@@ -1,8 +1,8 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
-import stocksList from '../imports/components/stocks/stocksList';
+import market from '../imports/components/market/market';
 
 angular.module('trading-floor', [
     angularMeteor,
-    stocksList.name
+    market.name
 ]);

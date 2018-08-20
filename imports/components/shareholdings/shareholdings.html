@@ -1,0 +1,37 @@
+<header>
+    <h2>Wallet</h2>
+</header>
+
+<span>Your balance: ${{ $ctrl.balance | number : 2 }} </span>
+
+<form name="depositFunds" ng-submit="$ctrl.depositFunds($ctrl.depositAmount)">
+    <span>Deposit funds: </span>
+    <input ng-model="$ctrl.depositAmount" type="number" step="0.01" placeholder="$0.00"/>
+    <button type="submit">Deposit</button>
+</form>
+
+<form name="withdrawFunds" ng-submit="$ctrl.withdrawFunds($ctrl.withdrawAmount)">
+    <span>Withdraw funds: </span>
+    <input ng-model="$ctrl.withdrawAmount" type="number" step="0.01" placeholder="$0.00"/>
+    <button type="submit">Withdraw</button>
+</form>
+
+<h2>Shareholdings</h2>
+
+<ul>
+    <li ng-if="assets" ng-repeat="asset in assets">
+        Ticker: {{asset.name}}
+        Price: ${{asset.price}}
+        Units: {{asset.units | number : 3}}
+        Total: ${{asset.price * asset.units | number : 2}}
+    </li>
+</ul>
+
+<span>Total Asset Value: ${{totalAssetValue() | number : 2}}</span>
+
+<form name="sellStock" ng-submit="sellAsset()">
+    Ticker: <input ng-model="name" type="text" placeholder="e.g GOOGL"/>
+    Units: <input ng-model="units" type="number" step="0.001" placeholder="0.000"/>
+    <button type="submit">Sell</button>
+    <span>Total Asset Value: ${{totalAssetValue() | number : 2}}</span>
+</form>

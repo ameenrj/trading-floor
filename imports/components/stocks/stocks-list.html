@@ -1,0 +1,17 @@
+<header>
+    <h2>Stocks</h2>
+</header>
+
+<ul>
+    <li ng-repeat="stock in $parent.stocks">
+        Ticker: {{stock["1. symbol"]}}
+        Price: {{stock["2. price"]}}
+    </li>
+</ul>
+
+<form name="buyStock" ng-submit="buy()">
+    Ticker: <input ng-model="ticker" type="text" placeholder="e.g GOOGL"/>
+    Units: <input ng-model="units" type="number" step="0.001" placeholder="0.000"/>
+    <button type="submit">Buy</button>
+    <span>Cost of purchasing: ${{cost() | number : 2}}</span>
+</form>
