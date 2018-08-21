@@ -15,8 +15,8 @@ if (Meteor.isServer) {
         'stocks.get': function () {
             const url = baseUrl + batchStockQuery + symbolsQuery + apikeyQuery;
             let result = HTTP.get(url);
-            console.log(result.statusCode);
             if(result.statusCode === 200) {
+                // TODO: Return a simple object containing only the data we need/with less annoying keys
                 return result.data[STOCK_QUOTES];
             } else {
                 const errorJson = JSON.parse(result.content);
