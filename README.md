@@ -71,3 +71,4 @@ prices, or perhaps better - to share the same data source as the stock list and 
 the decimal place restrictions imposed on the withdraw input vs. the true balance rather than the formatted balance 
 shown on the screen)
 - No error messages shown to the user
+- UI not fully responsive to resizing the window, notably the buy/sell stock rows

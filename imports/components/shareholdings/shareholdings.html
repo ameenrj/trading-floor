@@ -51,13 +51,11 @@
         <span class="bold">Total asset value: </span>${{totalAssetValue() | number : 2}}
     </div>
 
-    <div class="row">
-        <form name="sellStock" ng-submit="sellAsset()">
-            <label for="ticker">Ticker: </label>
-            <input ng-model="name" type="text" id="ticker" placeholder="e.g GOOGL"/>
-            <label for="units">Units: </label>
-            <input ng-model="units" type="number" id="units" step="0.001" placeholder="0.000"/>
-            <button type="submit" class="btn btn-danger">Sell</button>
-        </form>
-    </div>
+    <form name="sellStock" ng-submit="sellAsset()">
+        <label for="ticker">Ticker: </label>
+        <input ng-model="name" type="text" id="ticker" placeholder="e.g GOOGL"/>
+        <label for="units">Units: </label>
+        <input ng-model="units" type="number" id="units" step="0.001" placeholder="0.000"/>
+        <button type="submit" class="btn btn-danger">Sell</button>
+    </form>
 </div>
