@@ -23,6 +23,9 @@
 <div class="container well">
     <h2 class="bold">Shareholdings</h2>
 
+    <div ng-hide="assets.length">
+        You currently have no assets.
+    </div>
     <div ng-if="assets.length">
         <table class="table table-striped table-hover">
             <thead>
