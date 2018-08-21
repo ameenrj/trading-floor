@@ -10,17 +10,19 @@ const symbolsQuery = '&symbols=AAPL,GOOGL,MSFT,AMZN,FB,JPM,JNJ,XOM,BAC,WFC';
 // TODO: Get apikey from environment variables
 const apikeyQuery = '&apikey=ADDYOURAPIKEYHERE';
 
-Meteor.methods({
-    'stocks.get': function () {
-        const url = baseUrl + batchStockQuery + symbolsQuery + apikeyQuery;
-        let result = HTTP.get(url);
-        console.log(result.statusCode);
-        if(result.statusCode === 200) {
-            return result.data[STOCK_QUOTES];
-        } else {
-            const errorJson = JSON.parse(result.content);
-            // TODO: Handle error properly
-            throw new Meteor.Error(result.statusCode, errorJson.error);
+if (Meteor.isServer) {
+    Meteor.methods({
+        'stocks.get': function () {
+            const url = baseUrl + batchStockQuery + symbolsQuery + apikeyQuery;
+            let result = HTTP.get(url);
+            console.log(result.statusCode);
+            if(result.statusCode === 200) {
+                return result.data[STOCK_QUOTES];
+            } else {
+                const errorJson = JSON.parse(result.content);
+                // TODO: Handle error properly
+                throw new Meteor.Error(result.statusCode, errorJson.error);
+            }
         }
-    }
-});
+    });
+}
