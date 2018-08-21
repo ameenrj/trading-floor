@@ -4,8 +4,6 @@ import template from './stocks-list.html';
 
 class StocksListCtrl {
     constructor($scope) {
-        const self = this;
-
         $scope.buy = function() {
             const ticker = $scope.ticker.toUpperCase();
             if ($scope.isLegitimateStock(ticker)) {

@@ -9,6 +9,16 @@ class ShareholdingsCtrl {
         this.balance = 0;
         const self = this;
 
+        $scope.updateFromStorage = function() {
+            const portfolio  = angular.fromJson(window.localStorage['portfolio']);
+            if (portfolio) {
+                $scope.assets = portfolio.assets;
+                self.balance = portfolio.balance;
+            }
+        };
+
+        $scope.updateFromStorage();
+
         $scope.$on("buyAsset", function(event, name, price, units) {
             if ((price * units) <= self.balance) {
                 const asset = $scope.findAsset(name);
@@ -19,6 +29,7 @@ class ShareholdingsCtrl {
                 }
                 self.balance -= price * units;
             }
+            $scope.save();
         });
 
         $scope.sellAsset = function() {
@@ -30,6 +41,7 @@ class ShareholdingsCtrl {
                     $scope.assets.splice($scope.findAssetIndex($scope.name), 1);
                 }
             }
+            $scope.save();
         };
 
         $scope.totalAssetValue = function() {
@@ -53,6 +65,11 @@ class ShareholdingsCtrl {
         $scope.findPrice = function(ticker) {
             return $scope.findAsset(ticker).price;
         };
+
+        $scope.save = function() {
+            window.localStorage['portfolio'] = JSON.stringify({assets: $scope.assets, balance: self.balance});
+        };
+
     }
 
     depositFunds(amount) {
