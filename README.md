@@ -3,7 +3,7 @@
 ## Problem
 
 A user needs a simple web application to allow them to manage a fake stock portfolio and balance. Real stock data 
-should be used, fetched from service such as Alphavantage or Quandl. At a minimum, the user needs to be able to add and 
+should be used, fetched from service such as Alpha Vantage or Quandl. At a minimum, the user needs to be able to add and 
 withdraw funds and buy and sell stocks. A database is not required, however data should persist across state refreshes.
 
 ## Proposed Solution
@@ -12,18 +12,19 @@ Meteor - a full-stack Javascript framework - and AngularJS will be used to creat
 because it allows for rapid prototyping. Benefits include quick-setup, cross-platform code, uses entirely JavaScript, 
 in-memory MongoDB instance, easy deployment, etc. (See more: https://www.meteor.com/, http://whymeteor.com/).
 
-Alphavantage has been chosen as the stock information provider as it has less limitations than Quandl. Quandl has 
+Alpha Vantage has been chosen as the stock information provider as it has less limitations than Quandl. Quandl has 
 recently taken down some free apis and may take down more in the near future (See more: 
-https://backtest-rookies.com/2018/04/20/replacing-quandl-wiki-data-with-alpha-vantage/). Additionally, Alphavantage
+https://backtest-rookies.com/2018/04/20/replacing-quandl-wiki-data-with-alpha-vantage/). Additionally, Alpha Vantage
 provides a batch fetch API to grab up to 50 stocks at once - a feature hard to come by nowadays. A single GET request
 is needed to fetch up to 50 stocks as opposed to 50 individual ones (albeit it does return less detailed data - not an 
 issue for the problem being solved here however).
 
 ## Assumptions
 
+- To be completed in 6-8 hours
 - Stock can be bought in units of up to three decimal places (0.001 increments)
-- US only stocks are sufficient
-- Data does not need to persist across server start ups and thus a database is not needed
+- US only stocks are enough
+- Data does not need to persist across server restarts and thus a database is not needed
 
 ## Installation and Running the app
 
@@ -38,8 +39,8 @@ Then cd into the directory of the project:
 cd trading-floor
 ```
 
-You will need your own Alphavantage API key to retrieve stocks. Get one here 
-https://www.alphavantage.co/support/#api-key and then add your key to the apikeyQuery in *imports\api\alphaVantage.js*.
+You will need your own Alpha Vantage API key to retrieve stocks. Get one here 
+https://www.Alpha Vantage.co/support/#api-key and then add your key to the apikeyQuery in *imports\api\Alpha Vantage.js*.
 
 Finally, run the app:
 ```
