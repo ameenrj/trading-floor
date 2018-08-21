@@ -1,4 +1,25 @@
 body {
-  padding: 10px;
-  font-family: sans-serif;
+  padding: 50px;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h2 {
+  font-weight: bold;
+  text-decoration: underline;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.balance {
+  font-size: 30px;
+  margin: 20px 15px 30px 15px;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+    background-color: #ffffff;
 }

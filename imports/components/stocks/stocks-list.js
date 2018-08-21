@@ -12,7 +12,7 @@ class StocksListCtrl {
         };
 
         $scope.cost = function() {
-            if ($scope.ticker && $scope.units) {
+            if ($scope.isLegitimateStock($scope.ticker) && $scope.units) {
                 return $scope.findPrice($scope.ticker) * $scope.units;
             } else {
                 return 0;
@@ -20,7 +20,9 @@ class StocksListCtrl {
         };
 
         $scope.isLegitimateStock = function(name) {
-            return $scope.$parent.stocks.findIndex(stock => stock["1. symbol"] === name) > -1;
+            if ($scope.$parent.stocks) {
+                return $scope.$parent.stocks.findIndex(stock => stock["1. symbol"] === name) > -1;
+            }
         };
 
         $scope.findPrice = function(ticker) {

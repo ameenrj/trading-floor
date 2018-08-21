@@ -1,17 +1,27 @@
-<header>
-    <h2>Stocks</h2>
-</header>
+<div class="container well">
+    <h2 class="bold">Stocks</h2>
 
-<ul>
-    <li ng-repeat="stock in $parent.stocks">
-        Ticker: {{stock["1. symbol"]}}
-        Price: {{stock["2. price"]}}
-    </li>
-</ul>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Ticker</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="stock in $parent.stocks">
+                <td class="col-md-3">{{stock["1. symbol"]}}</td>
+                <td class="col-md-3">{{stock["2. price"]}}</td>
+            </tr>
+        </tbody>
+    </table>
 
-<form name="buyStock" ng-submit="buy()">
-    Ticker: <input ng-model="ticker" type="text" placeholder="e.g GOOGL"/>
-    Units: <input ng-model="units" type="number" step="0.001" placeholder="0.000"/>
-    <button type="submit">Buy</button>
-    <span>Cost of purchasing: ${{cost() | number : 2}}</span>
-</form>
+    <form name="buyStock" ng-submit="buy()">
+        <label for="ticker">Ticker: </label>
+        <input ng-model="ticker" type="text" id="ticker" placeholder="e.g GOOGL"/>
+        <label for="units">Units: </label>
+        <input ng-model="units" type="number" id="units" step="0.001" placeholder="0.000"/>
+        <button type="submit" class="btn btn-danger">Buy</button>
+        <span class="bold">Cost of purchasing: </span> ${{cost() | number : 2}}
+    </form>
+</div>

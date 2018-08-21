@@ -1,37 +1,60 @@
-<header>
-    <h2>Wallet</h2>
-</header>
+<div class="container well">
+    <h2 class="bold">Wallet</h2>
 
-<span>Your balance: ${{ $ctrl.balance | number : 2 }} </span>
+    <div class="row text-center balance">
+        <span class="bold">Your balance:</span> ${{ $ctrl.balance | number : 2 }}
+    </div>
 
-<form name="depositFunds" ng-submit="$ctrl.depositFunds($ctrl.depositAmount)">
-    <span>Deposit funds: </span>
-    <input ng-model="$ctrl.depositAmount" type="number" step="0.01" placeholder="$0.00"/>
-    <button type="submit">Deposit</button>
-</form>
+    <div class="row">
+        <form name="depositFunds" class="form-inline center-block col-sm-6" ng-submit="$ctrl.depositFunds($ctrl.depositAmount)">
+            <label for="deposit">Deposit funds: </label>
+            <input ng-model="$ctrl.depositAmount" type="number" id="deposit" step="0.01" placeholder="$0.00"/>
+            <button type="submit" class="btn btn-primary">Deposit</button>
+        </form>
 
-<form name="withdrawFunds" ng-submit="$ctrl.withdrawFunds($ctrl.withdrawAmount)">
-    <span>Withdraw funds: </span>
-    <input ng-model="$ctrl.withdrawAmount" type="number" step="0.01" placeholder="$0.00"/>
-    <button type="submit">Withdraw</button>
-</form>
+        <form name="withdrawFunds" class="form-inline col-sm-6" ng-submit="$ctrl.withdrawFunds($ctrl.withdrawAmount)">
+            <label for="withdraw">Withdraw funds: </label>
+            <input ng-model="$ctrl.withdrawAmount" type="number" id="withdraw" step="0.01" placeholder="$0.00"/>
+            <button type="submit" class="btn btn-primary">Withdraw</button>
+        </form>
+    </div>
+</div>
 
-<h2>Shareholdings</h2>
+<div class="container well">
+    <h2 class="bold">Shareholdings</h2>
 
-<ul>
-    <li ng-if="assets" ng-repeat="asset in assets">
-        Ticker: {{asset.name}}
-        Price: ${{asset.price}}
-        Units: {{asset.units | number : 3}}
-        Total: ${{asset.price * asset.units | number : 2}}
-    </li>
-</ul>
+    <div ng-if="assets.length">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Ticker</th>
+                    <th>Price</th>
+                    <th>Units</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="asset in assets">
+                    <td class="col-md-3">{{asset.name}}</td>
+                    <td class="col-md-3">${{asset.price}}</td>
+                    <td class="col-md-3">{{asset.units | number : 3}}</td>
+                    <td class="col-md-3">${{asset.price * asset.units | number : 2}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-<span>Total Asset Value: ${{totalAssetValue() | number : 2}}</span>
+    <div class="row text-center balance">
+        <span class="bold">Total asset value: </span>${{totalAssetValue() | number : 2}}
+    </div>
 
-<form name="sellStock" ng-submit="sellAsset()">
-    Ticker: <input ng-model="name" type="text" placeholder="e.g GOOGL"/>
-    Units: <input ng-model="units" type="number" step="0.001" placeholder="0.000"/>
-    <button type="submit">Sell</button>
-    <span>Total Asset Value: ${{totalAssetValue() | number : 2}}</span>
-</form>
+    <div class="row">
+        <form name="sellStock" ng-submit="sellAsset()">
+            <label for="ticker">Ticker: </label>
+            <input ng-model="name" type="text" id="ticker" placeholder="e.g GOOGL"/>
+            <label for="units">Units: </label>
+            <input ng-model="units" type="number" id="units" step="0.001" placeholder="0.000"/>
+            <button type="submit" class="btn btn-danger">Sell</button>
+        </form>
+    </div>
+</div>
